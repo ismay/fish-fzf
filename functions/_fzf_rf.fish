@@ -1,6 +1,5 @@
-#!/usr/bin/env fish
-
-function rf --description "Search with rg and filter with fzf"
+# Inspired by https://github.com/PatrickF1/fzf.fish/pull/118
+function _fzf_rf
   # Use smart case and fixed strings for all searches
   set shared_rg_params --smart-case --fixed-strings
 

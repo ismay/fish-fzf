@@ -1,19 +1,5 @@
-#     ____      ____
-#    / __/___  / __/
-#   / /_/_  / / /_
-#  / __/ / /_/ __/
-# /_/   /___/_/ key-bindings.fish
-#
-# - $FZF_TMUX_OPTS
-# - $FZF_CTRL_T_COMMAND
-# - $FZF_CTRL_T_OPTS
-# - $FZF_CTRL_R_OPTS
-# - $FZF_ALT_C_COMMAND
-# - $FZF_ALT_C_OPTS
-
-# Key bindings
-# ------------
-function fzf_key_bindings
+# From https://github.com/junegunn/fzf/blob/master/shell/key-bindings.fish
+function _fzf_default_bindings
 
   # Store current token in $dir as root for the 'find' command
   function fzf-file-widget -d "List files and folders"

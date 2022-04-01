@@ -1,12 +1,9 @@
-# ensure fzf respects gitignored files
-set -x FZF_DEFAULT_COMMAND "fd --type f"
-set -x FZF_CTRL_T_COMMAND "fd"
-
-# set 16 color colorscheme
-set -x FZF_DEFAULT_OPTS "--color=16"
+set -gx FZF_DEFAULT_COMMAND "fd --type f"
+set -gx FZF_CTRL_T_COMMAND "fd"
+set -gx FZF_DEFAULT_OPTS "--color=16"
 
 # set up fzf key bindings
-fzf_key_bindings
+_fzf_default_bindings
 
 # enable ripgrep fuzzy find
-bind \cf rf
+bind \cf _fzf_rf
