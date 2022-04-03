@@ -1,21 +1,23 @@
 function _fzf_history -d "Show command history"
-    test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
-    begin
-        set -lx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT $FZF_DEFAULT_OPTS --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS +m"
+    # history merge incorporates history changes from other fish sessions
+    builtin history merge
 
-        set -l FISH_MAJOR (echo $version | cut -f1 -d.)
-        set -l FISH_MINOR (echo $version | cut -f2 -d.)
+    set command_with_ts (
+        # Reference https://devhints.io/strftime to understand strftime format symbols
+        builtin history --null --show-time="%m-%d %H:%M:%S │ " |
+        fzf --read0 \
+            --tiebreak=index \
+            --query=(commandline) \
+            # preview current command using fish_ident in a window at the bottom 3 lines tall
+            --preview="echo -- {4..} | fish_indent --ansi" \
+            --preview-window="bottom:3:wrap" |
+        string collect
+    )
 
-        # history's -z flag is needed for multi-line support.
-        # history's -z flag was added in fish 2.4.0, so don't use it for versions
-        # before 2.4.0.
-        if [ "$FISH_MAJOR" -gt 2 -o \( "$FISH_MAJOR" -eq 2 -a "$FISH_MINOR" -ge 4 \) ]
-            history -z | eval fzf --read0 --print0 -q '(commandline)' | read -lz result
-            and commandline -- $result
-        else
-            history | eval fzf -q '(commandline)' | read -l result
-            and commandline -- $result
-        end
+    if test $status -eq 0
+        set command_selected (string split --max 1 " │ " $command_with_ts)[2]
+        commandline --replace -- $command_selected
     end
-    commandline -f repaint
+
+    commandline --function repaint
 end
