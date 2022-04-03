@@ -9,7 +9,7 @@ function _fzf_ripgrep
         $shared_rg_params
 
     set fzf_command fzf \
-        --color=16
+        --color=16 \
         # Rerun ripgrep when the query changes
         --bind "change:reload:$rg_command {q} || true" \
         # Allow disabling the preview
