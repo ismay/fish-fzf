@@ -10,7 +10,7 @@ function _fzf_history -d "Show command history"
     set result (builtin history | $fzf_command | string collect)
 
     if [ -n "$result" ]
-        commandline --replace -- (string escape $result)
+        commandline --replace -- $result
     end
 
     commandline -f repaint
