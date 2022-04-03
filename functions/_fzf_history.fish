@@ -3,11 +3,12 @@ function _fzf_history -d "Show command history"
     builtin history merge
 
     set fzf_command fzf \
+        --read0 \
         --height 40% \
         --reverse \
         --color=16
 
-    set result (builtin history | $fzf_command | string collect)
+    set result (builtin history --null | $fzf_command | string collect)
 
     if [ -n "$result" ]
         commandline --replace -- $result
