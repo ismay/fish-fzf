@@ -1,4 +1,4 @@
-function _fzf_cd -d "Change directory"
+function _fzf_cd
     set fd_command fd \
         --type d \
         --color=never \

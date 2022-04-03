@@ -1,4 +1,4 @@
-function _fzf_file -d "List files and folders"
+function _fzf_file_or_dir
     set fd_command fd \
         --color=never \
         --strip-cwd-prefix

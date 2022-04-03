@@ -1,5 +1,4 @@
-function _fzf_history -d "Show command history"
-    # history merge incorporates history changes from other fish sessions
+function _fzf_history
     builtin history merge
 
     set fzf_command fzf \
