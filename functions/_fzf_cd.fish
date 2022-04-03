@@ -2,6 +2,7 @@ function _fzf_cd -d "Change directory"
     set fd_command fd \
         --type d \
         --color=never \
+        --strip-cwd-prefix \
         .
 
     set fzf_command fzf \
