@@ -2,18 +2,19 @@ function _fzf_history -d "Show command history"
     # history merge incorporates history changes from other fish sessions
     builtin history merge
 
-    set result (
-        builtin history --null |
-        fzf --read0 \
-            --tiebreak=index \
-            --query=(commandline) |
-        string collect
-    )
+    set history_command builtin history \
+        --null
 
-    if test $status -eq 0
-        set command_selected (string split --max 1 " │ " $result)[2]
-        commandline --replace -- $command_selected
+    set fzf_command fzf \
+        --height 40% \
+        --reverse \
+        --color=16
+
+    set result ($history_command | $fzf_command | string collect)
+
+    if [ -n "$result" ]
+        commandline --replace -- (string escape $result)
     end
 
-    commandline --function repaint
+    commandline -f repaint
 end
