@@ -1,24 +1,18 @@
 function _fzf_cd -d "Change directory"
-    set -l commandline (_fzf_parse_commandline)
-    set -l dir $commandline[1]
-    set -l fzf_query $commandline[2]
-    set -l prefix $commandline[3]
+    set fd_command fd \
+        --type d \
+        --color=never \
+        .
 
-    test -n "$FZF_ALT_C_COMMAND"; or set -l FZF_ALT_C_COMMAND "
-    command find -L \$dir -mindepth 1 \\( -path \$dir'*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' \\) -prune \
-    -o -type d -print 2> /dev/null | sed 's@^\./@@'"
-    test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
-    begin
-        set -lx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS"
-        eval "$FZF_ALT_C_COMMAND | "(echo fzf)' +m --query "'$fzf_query'"' | read -l result
+    set fzf_command fzf \
+        --height 40% \
+        --reverse \
+        $FZF_DEFAULT_OPTS
 
-        if [ -n "$result" ]
-            cd -- $result
+    set result ($fd_command | $fzf_command)
 
-            # Remove last token from commandline.
-            commandline -t ""
-            commandline -it -- $prefix
-        end
+    if [ -n "$result" ]
+        cd -- $result
     end
 
     commandline -f repaint
