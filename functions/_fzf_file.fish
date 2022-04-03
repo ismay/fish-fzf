@@ -6,7 +6,7 @@ function _fzf_file -d "List files and folders"
     set fzf_command fzf \
         --height 40% \
         --reverse \
-        $FZF_DEFAULT_OPTS
+        --color=16
 
     set result ($fd_command | $fzf_command)
 

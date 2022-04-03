@@ -8,7 +8,7 @@ function _fzf_cd -d "Change directory"
     set fzf_command fzf \
         --height 40% \
         --reverse \
-        $FZF_DEFAULT_OPTS
+        --color=16
 
     set result ($fd_command | $fzf_command)
 
