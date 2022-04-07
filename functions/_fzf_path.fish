@@ -1,9 +1,7 @@
-function _fzf_cd
+function _fzf_path
     set fd_command fd \
-        --type d \
         --color=never \
-        --strip-cwd-prefix \
-        .
+        --strip-cwd-prefix
 
     set fzf_command fzf \
         --height 40% \
@@ -13,7 +11,8 @@ function _fzf_cd
     set result ($fd_command | $fzf_command)
 
     if [ -n "$result" ]
-        cd -- $result
+        commandline -i (string escape $result)
+        commandline -i ' '
     end
 
     commandline -f repaint

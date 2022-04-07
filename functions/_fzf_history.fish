@@ -2,6 +2,7 @@ function _fzf_history
     builtin history merge
 
     set fzf_command fzf \
+        --tiebreak index \
         --read0 \
         --height 40% \
         --reverse \
