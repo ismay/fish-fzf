@@ -10,7 +10,7 @@ function _fzf_history
 
     set result (builtin history --null | $fzf_command | string collect)
 
-    if [ -n "$result" ]
+    if test -n "$result"
         commandline --replace -- $result
     end
 

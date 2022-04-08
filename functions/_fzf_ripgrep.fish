@@ -24,7 +24,7 @@ function _fzf_ripgrep
 
     set result ($rg_command '' | $fzf_command)
 
-    if [ -n "$result" ]
+    if test -n "$result"
         set results (string split : $result)
         commandline -i $results[1]
     end
