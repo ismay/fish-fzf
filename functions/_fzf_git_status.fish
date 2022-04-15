@@ -1,6 +1,6 @@
 function _fzf_git_status
     set is_inside_work_tree (git rev-parse --is-inside-work-tree 2>/dev/null)
-    if test -z $is_inside_work_tree; or test $is_inside_work_tree = 'false'
+    if test -z $is_inside_work_tree; or test $is_inside_work_tree = false
         commandline -f repaint
         return
     end

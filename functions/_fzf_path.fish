@@ -10,11 +10,11 @@ function _fzf_path
     set result ($fd_command | $fzf_command)
 
     if test -n "$result"
-      if test -d "$result"
-        set result $result/
-      end
+        if test -d "$result"
+            set result $result/
+        end
 
-      commandline -i -- $result
+        commandline -i -- $result
     end
 
     commandline -f repaint
