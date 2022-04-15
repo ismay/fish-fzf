@@ -6,7 +6,6 @@ function _fzf_git_branch
     end
 
     set git_branches (git for-each-ref refs/heads --format='%(refname:lstrip=2)' --sort='-committerdate')
-
     set fzf_command fzf \
         --multi \
         --height 40% \

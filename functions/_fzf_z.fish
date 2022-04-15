@@ -1,7 +1,6 @@
 function _fzf_z
     set z_command z -l
     set awk_command awk -F ' ' '{print $2}'
-
     set fzf_command fzf \
         --tiebreak index \
         --height 40% \

@@ -2,7 +2,6 @@ function _fzf_path
     set fd_command fd \
         --color=never \
         --strip-cwd-prefix
-
     set fzf_command fzf \
         --height 40% \
         --reverse \
