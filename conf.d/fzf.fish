@@ -13,5 +13,8 @@ bind \e\cZ _fzf_z
 # ctrl-alt-f
 bind \e\cF _fzf_f
 
-# ctrl-alt-g
-bind \e\cG _fzf_git_status
+# ctrl-alt-s
+bind \e\cS _fzf_git_status
+
+# ctrl-alt-b
+bind \e\cB _fzf_git_branch
