@@ -10,9 +10,6 @@ bind \e\cR _fzf_ripgrep
 # ctrl-alt-z
 bind \e\cZ _fzf_z
 
-# ctrl-alt-f
-bind \e\cF _fzf_f
-
 # ctrl-alt-s
 bind \e\cS _fzf_git_status
 
