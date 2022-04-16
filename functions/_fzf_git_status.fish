@@ -5,7 +5,7 @@ function _fzf_git_status
         return
     end
 
-    set git_files (git status --porcelain --no-rename | awk -F ' ' '{print $2}')
+    set git_files (git status --short --no-rename | awk -F ' ' '{print $2}')
     set fzf_command fzf \
         --multi \
         --height 40% \
